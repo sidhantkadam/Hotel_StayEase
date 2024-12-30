@@ -1,38 +1,20 @@
-package com.sid.project.StayEase.entity;
+package com.sid.project.StayEase.dto;
 
-import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
-
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@Entity
-@Table(name = "room")
-public class Room {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class RoomDTO {
 
+    private Long id;
     private String roomType;
     private BigDecimal roomPrice;
     private String roomPhotoUrl;
     private String roomDescription;
-
-    @OneToMany(mappedBy = "room", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Booking> bookings = new ArrayList<>();
-
-    @Override
-    public String toString() {
-        return "Room{" +
-                "roomDescription='" + roomDescription + '\'' +
-                ", roomPhotoUrl='" + roomPhotoUrl + '\'' +
-                ", roomPrice=" + roomPrice +
-                ", roomType='" + roomType + '\'' +
-                ", Id=" + id +
-                '}';
-    }
+    private List<BookingDTO> bookings;
 
     public Long getId() {
         return id;
@@ -74,11 +56,11 @@ public class Room {
         this.roomDescription = roomDescription;
     }
 
-    public List<Booking> getBookings() {
+    public List<BookingDTO> getBookings() {
         return bookings;
     }
 
-    public void setBookings(List<Booking> bookings) {
+    public void setBookings(List<BookingDTO> bookings) {
         this.bookings = bookings;
     }
 }
