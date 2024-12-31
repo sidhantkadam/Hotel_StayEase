@@ -127,6 +127,8 @@ public class UserServiceImpl implements UserService {
         try {
             userRepository.findById(Long.valueOf(userId)).orElseThrow(() -> new CommonException("user not found !"));
             userRepository.deleteById(Long.valueOf(userId));
+            response.setStatusCode(200);
+            response.setMessage("successful");
         } catch (CommonException e) {
             response.setStatusCode(404);
             response.setMessage(e.getMessage());

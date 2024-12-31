@@ -27,10 +27,10 @@ public class RoomController {
     @PostMapping("/addRoom")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<ResponseDTO> addNewRoom(
-            @RequestParam(value = "photo") MultipartFile photo,
-            @RequestParam(value = "roomType") String roomType,
-            @RequestParam(value = "roomPrice") BigDecimal roomPrice,
-            @RequestParam(value = "roomDescription") String roomDescription
+            @RequestParam(value = "photo", required = false) MultipartFile photo,
+            @RequestParam(value = "roomType", required = false) String roomType,
+            @RequestParam(value = "roomPrice", required = false) BigDecimal roomPrice,
+            @RequestParam(value = "roomDescription", required = false) String roomDescription
     ) {
         if (photo.isEmpty() || photo == null || roomPrice == null || roomType.isBlank() || roomType == null) {
             ResponseDTO responseDTO = new ResponseDTO();
@@ -77,7 +77,7 @@ public class RoomController {
         return ResponseEntity.status(responseDTO.getStatusCode()).body(responseDTO);
     }
 
-    @GetMapping("/available-rooms-by-date-and-type")
+    @GetMapping("/availableRoomsByDate")
     public ResponseEntity<ResponseDTO> getAvailableRoomsByDateAndType(
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkInDate,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkOutDate,

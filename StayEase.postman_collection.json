@@ -1,0 +1,402 @@
+{
+	"info": {
+		"_postman_id": "3bbee695-aafb-444a-bb92-255beef9f929",
+		"name": "StayEase",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "39420104"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Jhon Cena\",\r\n    \"email\" : \"jhonC@gmail.com\",\r\n    \"password\" : \"jhon\",\r\n    \"phoneNumber\" : 9988775555,\r\n    \"role\" : \"USER\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/auth/register"
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"jhonC@gmail.com\",\r\n    \"password\" : \"jhon\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/auth/login"
+			},
+			"response": []
+		},
+		{
+			"name": "getAllUsers",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdGF5ZWFzZV9hZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MzU2MTg3NzEsImV4cCI6MTczNTYyODg1MX0.2O0R2ujUMX1OqA6eSNpSu1O9L74yV_AgCfJsBMVZrvY"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/users/allUsers"
+			},
+			"response": []
+		},
+		{
+			"name": "getUserById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqaG9uQGdtYWlsLmNvbSIsImlhdCI6MTczNTYxOTA4NywiZXhwIjoxNzM1NjI5MTY3fQ.kj7k5WM-IujWrg12wWr3kucvKet8_-e_hBvHrX_caUs"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/users/user/1"
+			},
+			"response": []
+		},
+		{
+			"name": "getLoggedInUserinfo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqaG9uQ0BnbWFpbC5jb20iLCJpYXQiOjE3MzU2MzIyMzEsImV4cCI6MTczNTY0MjMxMX0.1spgjEZ4Aemb0GbMNIiBoQLA5eBa3zvV6UQsjZCVhlg"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/users/getLoggedInUserInfo"
+			},
+			"response": []
+		},
+		{
+			"name": "getUserBookingHisory",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqaG9uQGdtYWlsLmNvbSIsImlhdCI6MTczNTYxOTA4NywiZXhwIjoxNzM1NjI5MTY3fQ.kj7k5WM-IujWrg12wWr3kucvKet8_-e_hBvHrX_caUs"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/users/getUserBookings/1"
+			},
+			"response": []
+		},
+		{
+			"name": "deleteUser",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqaG9uQ0BnbWFpbC5jb20iLCJpYXQiOjE3MzU2MTk5NjMsImV4cCI6MTczNTYzMDA0M30.qqSfjaitBqLv8dMoCP5JKjZB5GIY86jw1_6ssqB9F6Q"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/users/deleteUser/4"
+			},
+			"response": []
+		},
+		{
+			"name": "addRoom",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdGF5ZWFzZV9hZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MzU2MjAwNzcsImV4cCI6MTczNTYzMDE1N30.1hjzwl3ZtQhAV6OftojDcvYFvaGMyJ3zO_uaBJQX6gk"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "/C:/Users/DEELL/Downloads/standard.jpg"
+						},
+						{
+							"key": "roomType",
+							"value": "Standard",
+							"type": "text"
+						},
+						{
+							"key": "roomPrice",
+							"value": "1200",
+							"type": "text"
+						},
+						{
+							"key": "roomDescription",
+							"value": "A standard room with standard facilities",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://localhost:8080/rooms/addRoom"
+			},
+			"response": []
+		},
+		{
+			"name": "allRoomTypes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdGF5ZWFzZV9hZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MzU2MjAwNzcsImV4cCI6MTczNTYzMDE1N30.1hjzwl3ZtQhAV6OftojDcvYFvaGMyJ3zO_uaBJQX6gk"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "/C:/Users/DEELL/Downloads/standard.jpg"
+						},
+						{
+							"key": "roomType",
+							"value": "Standard",
+							"type": "text"
+						},
+						{
+							"key": "roomPrice",
+							"value": "1200",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "roomDescription",
+							"value": "A standard room with standard facilities",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://localhost:8080/rooms/getAllRoomType"
+			},
+			"response": []
+		},
+		{
+			"name": "allRoomTypes Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdGF5ZWFzZV9hZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MzU2MjAwNzcsImV4cCI6MTczNTYzMDE1N30.1hjzwl3ZtQhAV6OftojDcvYFvaGMyJ3zO_uaBJQX6gk"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/rooms/getRoom/2"
+			},
+			"response": []
+		},
+		{
+			"name": "deletRoomById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdGF5ZWFzZV9hZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MzU2MjAwNzcsImV4cCI6MTczNTYzMDE1N30.1hjzwl3ZtQhAV6OftojDcvYFvaGMyJ3zO_uaBJQX6gk"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/rooms/deleteRoom/2"
+			},
+			"response": []
+		},
+		{
+			"name": "updateRoom",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdGF5ZWFzZV9hZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MzU2MjAwNzcsImV4cCI6MTczNTYzMDE1N30.1hjzwl3ZtQhAV6OftojDcvYFvaGMyJ3zO_uaBJQX6gk"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "/C:/Users/DEELL/Downloads/standard.jpg"
+						},
+						{
+							"key": "roomType",
+							"value": "Standard",
+							"type": "text"
+						},
+						{
+							"key": "roomPrice",
+							"value": "1400",
+							"type": "text"
+						},
+						{
+							"key": "roomDescription",
+							"value": "A standard room with standard facilities.",
+							"type": "text"
+						},
+						{
+							"key": "roomId",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://localhost:8080/rooms/updateRoom/1"
+			},
+			"response": []
+		},
+		{
+			"name": "getAllAvailableRooms",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdGF5ZWFzZV9hZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MzU2MjAwNzcsImV4cCI6MTczNTYzMDE1N30.1hjzwl3ZtQhAV6OftojDcvYFvaGMyJ3zO_uaBJQX6gk"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/rooms/getAllAvailableRooms"
+			},
+			"response": []
+		},
+		{
+			"name": "allAvailableRoomsByDate",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdGF5ZWFzZV9hZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MzU2MjAwNzcsImV4cCI6MTczNTYzMDE1N30.1hjzwl3ZtQhAV6OftojDcvYFvaGMyJ3zO_uaBJQX6gk"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "checkInDate",
+							"value": "2024-12-31",
+							"type": "text"
+						},
+						{
+							"key": "roomType",
+							"value": "Standard",
+							"type": "text"
+						},
+						{
+							"key": "checkOutDate",
+							"value": "2025-01-04",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://localhost:8080/rooms/availableRoomsByDate"
+			},
+			"response": []
+		},
+		{
+			"name": "bookARoom",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqaG9uQ0BnbWFpbC5jb20iLCJpYXQiOjE3MzU2MzIyMzEsImV4cCI6MTczNTY0MjMxMX0.1spgjEZ4Aemb0GbMNIiBoQLA5eBa3zvV6UQsjZCVhlg"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"checkInDate\" : \"2024-12-31\",\r\n    \"checkOutDate\" : \"2025-01-01\",\r\n    \"noOfAdults\" : 4,\r\n    \"noOfChild\" : 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/bookings/bookRoom/1/5"
+			},
+			"response": []
+		},
+		{
+			"name": "getBookingsUsingConfirmationCode",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqaG9uQ0BnbWFpbC5jb20iLCJpYXQiOjE3MzU2MzIyMzEsImV4cCI6MTczNTY0MjMxMX0.1spgjEZ4Aemb0GbMNIiBoQLA5eBa3zvV6UQsjZCVhlg"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/bookings/bookingByConfirmationCode/0X03O2MDIN"
+			},
+			"response": []
+		},
+		{
+			"name": "getUserById Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqaG9uQ0BnbWFpbC5jb20iLCJpYXQiOjE3MzU2MzIyMzEsImV4cCI6MTczNTY0MjMxMX0.1spgjEZ4Aemb0GbMNIiBoQLA5eBa3zvV6UQsjZCVhlg"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/users/getUserBookings/5"
+			},
+			"response": []
+		},
+		{
+			"name": "cancelBooking",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqaG9uQ0BnbWFpbC5jb20iLCJpYXQiOjE3MzU2MzIyMzEsImV4cCI6MTczNTY0MjMxMX0.1spgjEZ4Aemb0GbMNIiBoQLA5eBa3zvV6UQsjZCVhlg"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/bookings/cancelBooking/1"
+			},
+			"response": []
+		}
+	]
+}

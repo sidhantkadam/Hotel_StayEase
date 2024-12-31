@@ -2,9 +2,8 @@ package com.sid.project.StayEase.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,8 +15,6 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
-    @Setter
-    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,7 +24,7 @@ public class User implements UserDetails {
     @NotBlank(message = "Email is required !")
     @Column(unique = true)
     private String email;
-    @NotBlank(message = "Phone No. is required !")
+    @NotNull(message = "Phone No. is required !")
     private Long phoneNumber;
     @NotBlank(message = "Password is required !")
     private String password;
@@ -85,15 +82,15 @@ public class User implements UserDetails {
         this.role = role;
     }
 
-    public void setPassword(@NotBlank(message = "Password is required !") String password) {
+    public void setPassword( String password) {
         this.password = password;
     }
 
-    public @NotBlank(message = "Phone No. is required !") Long getPhoneNumber() {
+    public Long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(@NotBlank(message = "Phone No. is required !") Long phoneNumber) {
+    public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -101,15 +98,15 @@ public class User implements UserDetails {
         return email;
     }
 
-    public void setEmail(@NotBlank(message = "Email is required !") String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public @NotBlank(message = "Name is required !") String getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(@NotBlank(message = "Name is required !") String name) {
+    public void setName(String name) {
         this.name = name;
     }
 

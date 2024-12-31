@@ -16,7 +16,7 @@ import java.io.InputStream;
 
 @Service
 public class AwsS3Service {
-    private final String awsS3Image = "stayease-hotel-image";
+    private final String bucketName = "stayease-hotel-image";
 
     @Value("${aws.s3.access.key}")
     private String accessKey;
@@ -30,7 +30,7 @@ public class AwsS3Service {
         try {
             String Filename = photo.getOriginalFilename();
 
-            BasicAWSCredentials basicAWSCredentials = new BasicAWSCredentials(secretKey, accessKey);
+            BasicAWSCredentials basicAWSCredentials = new BasicAWSCredentials(accessKey, secretKey);
             AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
                     .withCredentials(new AWSStaticCredentialsProvider(basicAWSCredentials))
                     .withRegion(Regions.AP_SOUTH_1)
@@ -42,10 +42,10 @@ public class AwsS3Service {
 
             objectMetadata.setContentType("image/jpeg");
 
-            PutObjectRequest putObjectRequest = new PutObjectRequest(awsS3Image, Filename, inputStream, objectMetadata);
+            PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, Filename, inputStream, objectMetadata);
 
             s3Client.putObject(putObjectRequest);
-            return "https://" + awsS3Image + ".s3.amazonaws.com/" + Filename;
+            return "https://" + bucketName + ".s3.amazonaws.com/" + Filename;
 
         } catch (Exception e) {
             throw new CommonException("Unable to upload the image on aws s3 bucket!" + e.getMessage());

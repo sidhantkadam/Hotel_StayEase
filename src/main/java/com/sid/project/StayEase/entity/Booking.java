@@ -75,28 +75,27 @@ public class Booking {
         this.id = id;
     }
 
-    public @NotNull(message = "check in time is required !") LocalDate getCheckInDate() {
+    public LocalDate getCheckInDate() {
         return checkInDate;
     }
 
-    public void setCheckInDate(@NotNull(message = "check in time is required !") LocalDate checkInDate) {
+    public void setCheckInDate( LocalDate checkInDate) {
         this.checkInDate = checkInDate;
     }
 
-    public @Future(message = "check out time required in future") LocalDate getCheckOutDate() {
+    public LocalDate getCheckOutDate() {
         return checkOutDate;
     }
 
-    public void setCheckOutDate(@Future(message = "check out time required in future") LocalDate checkOutDate) {
+    public void setCheckOutDate(LocalDate checkOutDate) {
         this.checkOutDate = checkOutDate;
     }
 
-    @Min(value = 1, message = "minimum one adult is required !")
+
     public int getNoOfAdults() {
         return noOfAdults;
     }
 
-    @Min(value = 0, message = "min 0 child is required, less than zero is not allowed !")
     public int getNoOfChild() {
         return noOfChild;
     }
