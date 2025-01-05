@@ -26,15 +26,15 @@ function NavBar()
                 <NavLink to="/home">StayEase Hotel</NavLink>
             </div>
             <ul className="navbar-ul">
-                <li><NavLink  to="/home" activeclassname="active">Home</NavLink></li>
-                <li><NavLink  to="/rooms" activeclassname="active">Rooms</NavLink></li>
-                <li><NavLink  to="/find-bookings" activeclassname="active">Bookings</NavLink></li>
+                <li><NavLink  to="/home" activeclass="active">Home</NavLink></li>
+                <li><NavLink  to="/rooms" activeclass="active">Rooms</NavLink></li>
+                <li><NavLink  to="/find-bookings" activeclass="active">Bookings</NavLink></li>
 
-                {isUser && <li><NavLink to="/profile" activeclassname="active">Profile</NavLink></li>}
-                {isAdmin && <li><NavLink to="/admin" activeclassname="active">Admin</NavLink></li>}
+                {isUser && <li><NavLink to="/profile" activeclass="active">Profile</NavLink></li>}
+                {isAdmin && <li><NavLink to="/admin" activeclass="active">Admin</NavLink></li>}
 
-                {!isAuthenticated && <li><NavLink  to="/login" activeclassname="active">Login</NavLink></li>}
-                {!isAuthenticated && <li><NavLink  to="/register" activeclassname="active">Register</NavLink></li>}
+                {!isAuthenticated && <li><NavLink  to="/login" activeclass="active">Login</NavLink></li>}
+                {!isAuthenticated && <li><NavLink  to="/register" activeclass="active">Register</NavLink></li>}
                 {!isAuthenticated && <li onClick={handelLogout}>Logout</li>}
             </ul>
         </nav>

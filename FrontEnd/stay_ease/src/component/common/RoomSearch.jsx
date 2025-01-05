@@ -1,4 +1,4 @@
-import { react, useEffect, useState } from "react";
+import React , { useEffect, useState } from "react";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import ApiService from "../../service/ApiService";
@@ -15,13 +15,14 @@ const RoomSearch = ({ handelSearchResult }) => {
     useEffect(() => {
         const fetchRoomType = async () => {
             try {
-                const types = ApiService.getRoomTypes;
+                const types = await ApiService.getRoomTypes();
                 setRoomTypes(types);
             }
-            catch (err) {
-                console.log(err.message)
+            catch (error) {
+                console.log('Error fetching room types: ', error.message)
             }
-        }
+        };
+        fetchRoomType();
     }, [])
 
     const showError = (message, timeOut = 5000) => {
@@ -51,7 +52,7 @@ const RoomSearch = ({ handelSearchResult }) => {
             handelSearchResult(response.roomList);
             setError('');
         } catch (err) {
-            showError(err.response.data.message)
+            showError("Unown error occured: " + err.response.data.message)
         }
     }
 
@@ -76,17 +77,16 @@ const RoomSearch = ({ handelSearchResult }) => {
                         placeholderText="Select Check-out Date"
                     />
                 </div>
-
                 <div className="search-field">
                     <label>Room Type</label>
                     <select value={roomType} onChange={(e) => setRoomType(e.target.value)}>
                         <option disabled value="">
-                            Select Room Type
+                        Select Room Type
                         </option>
                         {roomTypes.map((roomType) => (
-                            <option key={roomType} value={roomType}>
-                                {roomType}
-                            </option>
+                        <option key={roomType} value={roomType}>
+                            {roomType}
+                        </option>
                         ))}
                     </select>
                 </div>
@@ -98,4 +98,5 @@ const RoomSearch = ({ handelSearchResult }) => {
         </section>
     );
 }
+
 export default RoomSearch;

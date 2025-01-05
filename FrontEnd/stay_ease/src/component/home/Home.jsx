@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import RoomSearch from "../common/RoomSearch";
+import RoomResults from "../common/RoomResults";
 
 
 const Home = () => {
@@ -26,6 +27,7 @@ const Home = () => {
             </section>
 
             <RoomSearch handelSearchResult={handleSearchResult} />
+            <RoomResults roomSearchResults = {roomSearchResults} />
 
             <h4><a className="view-rooms-home" href="/rooms">All Rooms</a></h4>
 
