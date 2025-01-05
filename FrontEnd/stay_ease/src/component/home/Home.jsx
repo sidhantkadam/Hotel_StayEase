@@ -1,15 +1,14 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import RoomSearch from "../common/RoomSearch";
 
 
-const Home =()=>
-{
+const Home = () => {
     const [roomSearchResults, setRoomSearchResults] = useState([]);
     const handleSearchResult = (results) => {
-    setRoomSearchResults(results);
+        setRoomSearchResults(results);
     };
-    
-    return(
+
+    return (
         <div className="home">
             <section>
                 <header className="header-banner">
@@ -68,6 +67,6 @@ const Home =()=>
             </section>
         </div>
     );
-} 
+}
 
 export default Home;

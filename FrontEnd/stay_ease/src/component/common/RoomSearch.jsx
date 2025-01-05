@@ -1,11 +1,10 @@
 import { react, useEffect, useState } from "react";
-import DatePicker from "react-date-picker";
-import 'react-date-picker/dist/DatePicker.css';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import ApiService from "../../service/ApiService";
 
 
-const RoomSearch = ({ handelSearchResult }) =>
-{
+const RoomSearch = ({ handelSearchResult }) => {
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const [roomType, setRoomType] = useState('');
@@ -15,23 +14,46 @@ const RoomSearch = ({ handelSearchResult }) =>
 
     useEffect(() => {
         const fetchRoomType = async () => {
-            try{
+            try {
                 const types = ApiService.getRoomTypes;
                 setRoomTypes(types);
             }
-            catch(err){
+            catch (err) {
                 console.log(err.message)
             }
         }
     }, [])
 
-    const showError= (message, timeOut= 5000) =>
-    {
+    const showError = (message, timeOut = 5000) => {
         setError(message);
-        setTimeout(() =>{
-            setError=('');
+        setTimeout(() => {
+            setError = ('');
         }, timeOut)
     };
+
+    const handleInternalSearch = async () => {
+        if (!startDate || !endDate || !roomType) {
+            showError("Please select all feilds !")
+            return false;
+        }
+        try {
+            const formatedStartDate = startDate ? startDate.toISOString().split('T')[0] : null;
+            const formatedEndDate = endDate ? endDate.toISOString().split('T')[0] : null;
+
+            const response = await ApiService.getAvailableRoomsByDateAndType(formatedStartDate, formatedEndDate, roomType);
+
+            if (response.setStatusCode === 200) {
+                if (response.roomList.length === 0) {
+                    showError('Room not currently available for this date range on the selected room type.');
+                    return
+                }
+            }
+            handelSearchResult(response.roomList);
+            setError('');
+        } catch (err) {
+            showError(err.response.data.message)
+        }
+    }
 
     return (
         <section>
@@ -59,18 +81,18 @@ const RoomSearch = ({ handelSearchResult }) =>
                     <label>Room Type</label>
                     <select value={roomType} onChange={(e) => setRoomType(e.target.value)}>
                         <option disabled value="">
-                        Select Room Type
+                            Select Room Type
                         </option>
                         {roomTypes.map((roomType) => (
-                        <option key={roomType} value={roomType}>
-                            {roomType}
-                        </option>
+                            <option key={roomType} value={roomType}>
+                                {roomType}
+                            </option>
                         ))}
                     </select>
                 </div>
-                {/* <button className="home-search-button" onClick={handleInternalSearch}>
+                <button className="home-search-button" onClick={handleInternalSearch}>
                     Search Rooms
-                </button> */}
+                </button>
             </div>
             {error && <p className="error-message">{error}</p>}
         </section>
